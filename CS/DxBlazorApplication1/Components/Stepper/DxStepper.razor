@@ -1,0 +1,96 @@
+﻿@using System.Collections
+@using System.Collections.ObjectModel
+
+<div class="stepper-html-root" style="display: flex; @(Orientation == Orientation.Horizontal ? "flex-direction: column" : "")">
+    <DxGridLayout CssClass="stepper-layout" style="@(Data is null ? "height: auto;" : "")">
+        <Columns>
+            @if(Orientation == Orientation.Horizontal) {
+                @for(int i = 0; i < NodeCount + ConnectorCount; i++) {
+                    <DxGridLayoutColumn></DxGridLayoutColumn>
+                }
+            }
+            else {
+                <DxGridLayoutColumn Width="3rem"></DxGridLayoutColumn>
+                <DxGridLayoutColumn></DxGridLayoutColumn>
+            }
+        </Columns>
+        <Rows>
+            @if(Orientation == Orientation.Horizontal) {
+                <DxGridLayoutRow Height="3rem"></DxGridLayoutRow>
+                <DxGridLayoutRow Height="3rem"></DxGridLayoutRow>
+            }
+            else {
+                @for(int i = 0; i < NodeCount + ConnectorCount; i++) {
+                    var height = i % 2 == 0 ? "2.5rem" : $"calc((100% - 2.5rem * {NodeCount}) / {ConnectorCount})";
+                    <DxGridLayoutRow Height="@height"></DxGridLayoutRow>
+                }
+            }
+        </Rows>
+        <Items>
+            @Nodes
+
+            @Connectors
+
+            @Labels
+        </Items>
+    </DxGridLayout>
+    @if(Steps is not null && Data is null) {
+        <div>
+            <CascadingValue TValue="ObservableCollection<StepInfo>" Value="steps">
+                @Steps
+            </CascadingValue>
+            @if(steps.Count > 0) {
+                @steps[SelectedIndex].ChildContent
+            }
+        </div>
+    }
+</div>
+
+@if(Data is not null) {
+    <CascadingValue TValue="StepperDataMapping" Value="@mappings">
+        @DataMappings
+    </CascadingValue>
+}
+
+@code {
+    private RenderFragment Nodes => @<text>
+    @for (int i = 0; i<NodeCount; i++)
+        {
+        int nodeIndex = i;
+        <DxGridLayoutItem CssClass="stepper-cell stepper-node-container" Column="@GetNodeColumnIndex(nodeIndex)" Row="@GetNodeRowIndex(nodeIndex)">
+            <Template>
+                <DxButton CssClass="@GetStepCssClasses(nodeIndex)"
+                          @onfocusin='async () => { await OnSelectedIndexChanged(nodeIndex); }'
+                          Click='async () => { await OnSelectedIndexChanged(nodeIndex); }'
+                          IconCssClass="@steps[nodeIndex].IconCssClass"
+                          Text="@(String.IsNullOrEmpty(steps[nodeIndex].IconCssClass) ? steps[nodeIndex].Text : string.Empty)"></DxButton>
+            </Template>
+        </DxGridLayoutItem>
+        }
+    </text>;
+
+    private RenderFragment Connectors => @<text>
+    @for(int i = 0; i < ConnectorCount; i++) {
+        int connectorIndex = i;
+        int nextNodeIndex = connectorIndex + 1;
+            <DxGridLayoutItem CssClass="stepper-cell stepper-connector-container" Column="GetConnectorColumnIndex(connectorIndex)" Row="@GetConnectorRowIndex(connectorIndex)">
+                <Template>
+                    <div class="@GetConnectorContainerCssClasses()">
+                        <div class="@GetConnectorCssClasses(nextNodeIndex)"></div>
+                    </div>
+                </Template>
+            </DxGridLayoutItem>
+    }
+    </text>;
+
+    private RenderFragment Labels =>@<text>
+    @for(int i = 0; i < LabelCount; i++) {
+        int labelIndex = i;
+            <DxGridLayoutItem CssClass="stepper-cell" Column="@GetLabelColumnIndex(labelIndex)" Row="@GetLabelRowIndex(labelIndex)">
+                <Template>
+                    <span>@steps[labelIndex].Label</span>
+                </Template>
+            </DxGridLayoutItem>
+    }
+    </text>;
+}

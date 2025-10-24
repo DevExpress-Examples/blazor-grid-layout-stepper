@@ -1,0 +1,26 @@
+﻿@using System.Collections.ObjectModel
+@code {
+    [CascadingParameter]
+    private ObservableCollection<StepInfo>? Steps { get; set; }
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public string? IconCssClass { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized() {
+        Steps?.Add(new StepInfo {
+            Text = Text,
+            IconCssClass = IconCssClass,
+            Label = Label,
+            ChildContent = ChildContent
+        });
+    }
+}
