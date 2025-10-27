@@ -1,4 +1,4 @@
-﻿using DxBlazorApplication1.Components;
+﻿using blazor_stepper.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

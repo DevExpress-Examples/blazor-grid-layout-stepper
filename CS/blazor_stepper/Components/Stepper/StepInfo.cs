@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace DxBlazorApplication1.Components.Stepper {
+namespace blazor_stepper.Components.Stepper {
     public class StepInfo {
         public string? Text { get; set; }
         public string? IconCssClass { get; set; }

@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using DevExpress.Blazor;
 using Microsoft.AspNetCore.Components;
 
-namespace DxBlazorApplication1.Components.Stepper {
+namespace blazor_stepper.Components.Stepper {
     /// <summary>
     /// DxStepper is based on DxGridLayout component.
     /// Nodes (steps) are located in even columns/rows.

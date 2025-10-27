@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DxBlazorApplication1.Models {
+namespace blazor_stepper.Models {
     public class BookingModel {
         public required ContactDetails ContactDetails { get; set; }
         public required ActivityDetails ActivityDetails { get; set; }
