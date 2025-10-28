@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Reflection.Metadata.Ecma335;
 using DevExpress.Blazor;
 using Microsoft.AspNetCore.Components;
 
@@ -66,6 +67,15 @@ namespace blazor_stepper.Components.Stepper {
         #endregion
 
         #region Utility Methods
+        private string? GetStepText(int nodeIndex) {
+            if (nodeIndex < 0 || nodeIndex >= steps.Count)
+                throw new ArgumentOutOfRangeException(nameof(nodeIndex), "Invalid node index");
+            if (steps[nodeIndex] is StepInfo stepInfo
+                && String.IsNullOrEmpty(stepInfo.IconCssClass)) {
+                return stepInfo.Text;
+            }
+            return string.Empty;
+        }
         private void UpdateStepRender(object? sender, NotifyCollectionChangedEventArgs e) {
             StateHasChanged();
         }

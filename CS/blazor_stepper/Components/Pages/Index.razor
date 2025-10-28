@@ -21,17 +21,17 @@
                 <DxStepper @bind-SelectedIndex=SelectedIndex>
                     <Steps>
                         <DxStep Text="Contact Details" Label="Contact Details" IconCssClass="bi bi-person-lines-fill">
-                            <DxFormLayout>
-                                <DxFormLayoutItem ColSpanXs="6" Caption="First Name" CaptionPosition="CaptionPosition.Vertical">
+                            <DxFormLayout CaptionPosition="CaptionPosition.Vertical">
+                                <DxFormLayoutItem ColSpanXs="6" Caption="First Name">
                                     <DxTextBox @bind-Text=Booking.ContactDetails.FirstName></DxTextBox>
                                 </DxFormLayoutItem>
-                                <DxFormLayoutItem ColSpanXs="6" Caption="Last Name" CaptionPosition="CaptionPosition.Vertical">
+                                <DxFormLayoutItem ColSpanXs="6" Caption="Last Name">
                                     <DxTextBox @bind-Text=Booking.ContactDetails.LastName></DxTextBox>
                                 </DxFormLayoutItem>
-                                <DxFormLayoutItem ColSpanXs="12" Caption="Email" CaptionPosition="CaptionPosition.Vertical">
+                                <DxFormLayoutItem ColSpanXs="12" Caption="Email">
                                     <DxMaskedInput @bind-Value=Booking.ContactDetails.Email Mask="@(@"(\w|[.-])+@(\w|-)+\.(\w|-){2,4}")" MaskMode="MaskMode.RegEx"></DxMaskedInput>
                                 </DxFormLayoutItem>
-                                <DxFormLayoutItem ColSpanXs="12" Caption="Phone" CaptionPosition="CaptionPosition.Vertical">
+                                <DxFormLayoutItem ColSpanXs="12" Caption="Phone">
                                     <DxMaskedInput @bind-Value=Booking.ContactDetails.Phone Mask="(999)000-0000"></DxMaskedInput>
                                 </DxFormLayoutItem>
                             </DxFormLayout>
@@ -87,11 +87,8 @@
             selectedIndex = value;
         }
     }
-    public BookingModel Booking { get; set; } = new BookingModel() {
-        ContactDetails = new ContactDetails(),
-        ActivityDetails = new ActivityDetails(),
-        PaymentDetails = new PaymentDetails()
-    };
+    public BookingModel Booking { get; set; } = new();
+
     public object? CurrentModel {
         get => SelectedIndex switch {
             0 => Booking.ContactDetails,

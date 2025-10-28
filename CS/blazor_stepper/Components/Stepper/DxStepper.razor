@@ -63,7 +63,7 @@
                           @onfocusin='async () => { await OnSelectedIndexChanged(nodeIndex); }'
                           Click='async () => { await OnSelectedIndexChanged(nodeIndex); }'
                           IconCssClass="@steps[nodeIndex].IconCssClass"
-                          Text="@(String.IsNullOrEmpty(steps[nodeIndex].IconCssClass) ? steps[nodeIndex].Text : string.Empty)"></DxButton>
+                          Text="@GetStepText(nodeIndex)"></DxButton>
             </Template>
         </DxGridLayoutItem>
         }

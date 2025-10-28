@@ -2,9 +2,9 @@
 
 namespace blazor_stepper.Models {
     public class BookingModel {
-        public required ContactDetails ContactDetails { get; set; }
-        public required ActivityDetails ActivityDetails { get; set; }
-        public required PaymentDetails PaymentDetails { get; set; }
+        public ContactDetails ContactDetails { get; set; } = new();
+        public ActivityDetails ActivityDetails { get; set; } = new();
+        public PaymentDetails PaymentDetails { get; set; } = new();
     }
 
     public class ContactDetails {
