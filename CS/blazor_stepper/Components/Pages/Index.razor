@@ -10,7 +10,7 @@
     <EditForm Model="CurrentModel" Context="editContext" @ref=editForm OnValidSubmit="OnValidSubmit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
         <DxFormLayout CssClass="components-form">
-            <DxFormLayoutGroup>
+            <DxFormLayoutGroup Decoration="FormLayoutGroupDecoration.None">
                 <DxFormLayoutItem ColSpanXs="12" Context="ctx">
                     <DxStepper @bind-SelectedIndex=SelectedIndex>
                         <Steps>
@@ -48,7 +48,7 @@
                     </DxStepper>
                 </DxFormLayoutItem>
             </DxFormLayoutGroup>
-            <DxFormLayoutGroup>
+            <DxFormLayoutGroup Decoration="FormLayoutGroupDecoration.None">
                 <Items>
                     <DxFormLayoutItem ColSpanXs="12">
                         <div class="button-container">
