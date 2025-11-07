@@ -3,28 +3,6 @@
 @using blazor_stepper.Components.Stepper
 @using blazor_stepper.Models
 
-<style>
-    .recipes {
-        height: 500px;
-        width: 500px;
-    }
-
-    .recipes img{
-        height: 100%;
-    }
-
-    .recipe-container {
-        display: flex;
-        height: 100%;
-        align-items: center;
-        justify-content: space-evenly;
-    }
-
-    .recipe-container > .stepper-html-root {
-        height: 500px;
-    }
-</style>
-
 <div class="recipe-container">
     <DxStepper Orientation=Orientation.Vertical Data="@Data"
                @bind-SelectedIndex="@SelectedIndex">
