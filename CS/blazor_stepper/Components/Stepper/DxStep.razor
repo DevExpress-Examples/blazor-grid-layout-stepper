@@ -1,7 +1,5 @@
 ﻿@implements IDisposable
 @code {
-    private StepInfo _stepInfo = new();
-
     [CascadingParameter]
     private DxStepper? Stepper { get; set; }
 
@@ -18,15 +16,11 @@
     public RenderFragment? ChildContent { get; set; }
 
     protected override void OnInitialized() {
-        _stepInfo.Text = Text;
-        _stepInfo.IconCssClass = IconCssClass;
-        _stepInfo.Label = Label;
-        _stepInfo.ChildContent = ChildContent;
-        Stepper?.AddStep(_stepInfo);
+        Stepper?.AddStep(this);
     }
 
     public void Dispose()
     {
-        Stepper?.RemoveStep(_stepInfo);
+        Stepper?.RemoveStep(this);
     }
 }

@@ -2,7 +2,7 @@
 @using System.Collections.ObjectModel
 
 <div class="@GetRootCssClasses()">
-    <DxGridLayout CssClass="@GetGridLayoutCssClasses()">
+    <DxGridLayout CssClass="stepper-layout">
         <Columns>
             @if(Orientation == Orientation.Horizontal) {
                 @for(int i = 0; i < NodeCount + ConnectorCount; i++) {
@@ -34,7 +34,7 @@
             @Labels
         </Items>
     </DxGridLayout>
-    @if(Steps is not null && Data is null) {
+    @if(Steps is not null) {
         <div>
             <CascadingValue IsFixed=true Value="this">
                 @Steps

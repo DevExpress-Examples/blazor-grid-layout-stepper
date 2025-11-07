@@ -4,9 +4,14 @@
 @using blazor_stepper.Models
 
 <div class="recipe-container">
-    <DxStepper Orientation=Orientation.Vertical Data="@Data"
-               DataMappings="@(new StepperDataMappings("Text", "Label", "IconCssClass"))"
+    <DxStepper Orientation=Orientation.Vertical
                @bind-SelectedIndex="@SelectedIndex">
+        <Steps>
+            @foreach(var item in Data)
+            {
+                <DxStep Text="@item.Text" Label="@item.Label" IconCssClass="@item.IconCssClass" />
+            }
+        </Steps>
     </DxStepper>
 
     <DxCarousel CssClass="recipes" @bind-ActiveItemIndex=SelectedIndex>
