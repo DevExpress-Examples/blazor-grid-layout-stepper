@@ -122,6 +122,25 @@ namespace blazor_stepper.Components.Stepper {
             return textProperty is not null && labelProperty is not null && iconCssClassProperty is not null;
         }
 
+        private string GetRootCssClasses() {
+            var classes = "stepper-html-root";
+            if(Orientation == Orientation.Vertical) {
+                classes += " stepper-html-root-vertical";
+            }
+            else {
+                classes += " stepper-html-root-horizontal";
+            }
+            return classes;
+        }
+
+        private string GetGridLayoutCssClasses() {
+            string classes = "stepper-layout";
+            if(Data is null) {
+                classes += " stepper-layout-unbound";
+            }
+            return classes;
+        }
+
         private string GetStepCssClasses(int nodeIndex) {
             var classes = "st-node";
             if(!StepCompleted(nodeIndex)) {

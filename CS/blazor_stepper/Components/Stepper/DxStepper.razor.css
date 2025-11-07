@@ -1,4 +1,16 @@
-﻿::deep .stepper-cell {
+﻿.stepper-html-root{
+    display: flex;
+}
+
+.stepper-html-root.stepper-html-root-vertical {
+    flex-direction: row;
+}
+
+.stepper-html-root.stepper-html-root-horizontal {
+    flex-direction: column;
+}
+
+::deep .stepper-cell {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,6 +22,10 @@
 
 ::deep .stepper-layout {
     padding: 1rem;
+}
+
+::deep .stepper-layout.stepper-layout-unbound {
+    height: auto;
 }
 
 ::deep .st-node {
