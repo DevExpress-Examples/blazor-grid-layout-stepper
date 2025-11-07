@@ -48,9 +48,8 @@
 
 @code {
     private RenderFragment Nodes => @<text>
-    @for (int i = 0; i<NodeCount; i++)
-        {
-        int nodeIndex = i;
+    @foreach (int nodeIndex in Enumerable.Range(0, NodeCount))
+    {
         <DxGridLayoutItem CssClass="stepper-cell stepper-node-container" Column="@GetNodeColumnIndex(nodeIndex)" Row="@GetNodeRowIndex(nodeIndex)">
             <Template>
                 <DxButton CssClass="@GetStepCssClasses(nodeIndex)"
@@ -64,27 +63,26 @@
     </text>;
 
     private RenderFragment Connectors => @<text>
-    @for(int i = 0; i < ConnectorCount; i++) {
-        int connectorIndex = i;
+    @foreach (int connectorIndex in Enumerable.Range(0, ConnectorCount))
+    {
         int nextNodeIndex = connectorIndex + 1;
-            <DxGridLayoutItem CssClass="stepper-cell stepper-connector-container" Column="GetConnectorColumnIndex(connectorIndex)" Row="@GetConnectorRowIndex(connectorIndex)">
-                <Template>
-                    <div class="@GetConnectorContainerCssClasses()">
-                        <div class="@GetConnectorCssClasses(nextNodeIndex)"></div>
-                    </div>
-                </Template>
-            </DxGridLayoutItem>
+        <DxGridLayoutItem CssClass="stepper-cell stepper-connector-container" Column="GetConnectorColumnIndex(connectorIndex)" Row="@GetConnectorRowIndex(connectorIndex)">
+            <Template>
+                <div class="@GetConnectorContainerCssClasses()">
+                    <div class="@GetConnectorCssClasses(nextNodeIndex)"></div>
+                </div>
+            </Template>
+        </DxGridLayoutItem>
     }
     </text>;
 
     private RenderFragment Labels =>@<text>
-    @for(int i = 0; i < LabelCount; i++) {
-        int labelIndex = i;
-            <DxGridLayoutItem CssClass="stepper-cell" Column="@GetLabelColumnIndex(labelIndex)" Row="@GetLabelRowIndex(labelIndex)">
-                <Template>
-                    <span>@steps[labelIndex].Label</span>
-                </Template>
-            </DxGridLayoutItem>
+    @foreach(int labelIndex in Enumerable.Range(0, LabelCount)) {
+        <DxGridLayoutItem CssClass="stepper-cell" Column="@GetLabelColumnIndex(labelIndex)" Row="@GetLabelRowIndex(labelIndex)">
+            <Template>
+                <span>@steps[labelIndex].Label</span>
+            </Template>
+        </DxGridLayoutItem>
     }
     </text>;
 }
