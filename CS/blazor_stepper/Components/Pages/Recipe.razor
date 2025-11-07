@@ -5,10 +5,8 @@
 
 <div class="recipe-container">
     <DxStepper Orientation=Orientation.Vertical Data="@Data"
+               DataMappings="@(new StepperDataMappings("Text", "Label", "IconCssClass"))"
                @bind-SelectedIndex="@SelectedIndex">
-        <DataMappings>
-            <StepperDataMapping Text="Text" Label="Label" IconCssClass="IconCssClass"></StepperDataMapping>
-        </DataMappings>
     </DxStepper>
 
     <DxCarousel CssClass="recipes" @bind-ActiveItemIndex=SelectedIndex>

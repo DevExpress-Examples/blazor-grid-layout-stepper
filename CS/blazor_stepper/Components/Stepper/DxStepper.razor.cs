@@ -12,11 +12,9 @@ namespace blazor_stepper.Components.Stepper {
     /// Connectors are located in odd columns/rows.
     /// Labels are located in even columns/rows below/next to nodes.
     /// </summary>
-    public partial class DxStepper : ComponentBase, IDisposable {
-
+    public partial class DxStepper : ComponentBase {
         #region Fields
         private List<StepInfo> steps = [];
-        private StepperDataMapping mappings = new();
         #endregion
 
         #region Properties
@@ -31,9 +29,6 @@ namespace blazor_stepper.Components.Stepper {
         public IEnumerable? Data { get; set; }
 
         [Parameter]
-        public RenderFragment? DataMappings { get; set; }
-
-        [Parameter]
         public RenderFragment? Steps { get; set; }
 
         [Parameter]
@@ -45,15 +40,16 @@ namespace blazor_stepper.Components.Stepper {
         [Parameter]
         public Orientation Orientation { get; set; }
 
+        [Parameter]
+        public StepperDataMappings? DataMappings { get; set; }
+
         #endregion
 
         #region Lifecycle Methods
         protected override void OnInitialized() {
-            mappings.DataMappingsInitialized += InitializeStepCollection;
-        }
-
-        public void Dispose() {
-            mappings.DataMappingsInitialized -= InitializeStepCollection;
+            if(Steps is null && Data is not null && DataMappings is not null) {
+                InitializeStepCollection(Data, DataMappings);
+            }
         }
         #endregion
 
@@ -76,43 +72,23 @@ namespace blazor_stepper.Components.Stepper {
         }
 
         private string? GetStepText(int nodeIndex) {
-            if (nodeIndex < 0 || nodeIndex >= steps.Count)
+            if(nodeIndex < 0 || nodeIndex >= steps.Count)
                 throw new ArgumentOutOfRangeException(nameof(nodeIndex), "Invalid node index");
-            if (steps[nodeIndex] is StepInfo stepInfo
+            if(steps[nodeIndex] is StepInfo stepInfo
                 && String.IsNullOrEmpty(stepInfo.IconCssClass)) {
                 return stepInfo.Text;
             }
             return string.Empty;
         }
 
-        private void InitializeStepCollection(object? source, EventArgs e) {
-            if(Data is null) {
-                throw new Exception("DxStepper is not bound");
+        private void InitializeStepCollection(IEnumerable data, StepperDataMappings mappings) {
+            foreach(object record in data) {
+                AddStep(CreateStepInfoFromSourceObject(record, mappings));
             }
-
-            foreach(object record in Data) {
-                if(!HasMappingProperties(record)) {
-                    throw new Exception("Data contains objects that do not meet mappings");
-                }
-                steps.Add(CreateStepInfoFromSourceObject(record));
-            }
-
-            StateHasChanged();
         }
-        private StepInfo CreateStepInfoFromSourceObject(dynamic record) {
-            if(record is null) {
-                throw new Exception("Bound record is null");
-            }
-            var result = new StepInfo();
-            result.Text = record.Text;
-            result.Label = record.Label;
-            result.IconCssClass = record.IconCssClass;
-            return result;
-        }
-        private bool HasMappingProperties(object record) {
-            if(mappings is null) {
-                throw new Exception("Mappings are not specified");
-            }
+        private StepInfo CreateStepInfoFromSourceObject(object record, StepperDataMappings mappings) {
+            ArgumentNullException.ThrowIfNull(record, "Bound record is null");
+            ArgumentNullException.ThrowIfNull(mappings, "Mappings are not specified");
             if(String.IsNullOrEmpty(mappings.Text)) {
                 throw new Exception("Text mapping is not specified");
             }
@@ -124,10 +100,24 @@ namespace blazor_stepper.Components.Stepper {
             }
             var textProperty = record.GetType().GetProperty(mappings.Text);
             var labelProperty = record.GetType().GetProperty(mappings.Label);
-            var iconCssClassProperty = record.GetType().GetProperty(mappings.IconCssClass);
-            return textProperty is not null && labelProperty is not null && iconCssClassProperty is not null;
-        }
+            var iconProperty = record.GetType().GetProperty(mappings.IconCssClass);
 
+            if(textProperty is null) {
+                throw new MissingMemberException($"Text property '{mappings.Text}' not found in data record");
+            }
+            if(labelProperty is null) {
+                throw new MissingMemberException($"Label property '{mappings.Label}' not found in data record");
+            }
+            if(iconProperty is null) {
+                throw new MissingMemberException($"IconCssClass property '{mappings.IconCssClass}' not found in data record");
+            }
+
+            var result = new StepInfo();
+            result.Text = textProperty.GetValue(record)?.ToString();
+            result.Label = labelProperty.GetValue(record)?.ToString();
+            result.IconCssClass = iconProperty.GetValue(record)?.ToString();
+            return result;
+        }
         private string GetRootCssClasses() {
             var classes = "stepper-html-root";
             if(Orientation == Orientation.Vertical) {

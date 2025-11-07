@@ -46,12 +46,6 @@
     }
 </div>
 
-@if(Data is not null) {
-    <CascadingValue TValue="StepperDataMapping" Value="@mappings">
-        @DataMappings
-    </CascadingValue>
-}
-
 @code {
     private RenderFragment Nodes => @<text>
     @for (int i = 0; i<NodeCount; i++)
