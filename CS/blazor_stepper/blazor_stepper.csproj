@@ -7,10 +7,4 @@
   <ItemGroup>
     <PackageReference Include="DevExpress.Blazor" Version="25.1.5" />
   </ItemGroup>
-  <ItemGroup>
-    <EditorConfigFiles Remove="C:\Users\artem.kuzmin\Desktop\DX\Examples\Stepper\blazor_stepper\blazor_stepper\.editorconfig" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="C:\Users\artem.kuzmin\Desktop\DX\Examples\Stepper\blazor_stepper\blazor_stepper\.editorconfig" />
-  </ItemGroup>
 </Project>
