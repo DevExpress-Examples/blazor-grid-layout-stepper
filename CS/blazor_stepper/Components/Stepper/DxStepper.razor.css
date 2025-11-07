@@ -40,12 +40,12 @@
 }
 
 ::deep .st-node.st-node-selected {
-    box-shadow: 0 0 0 2px var(--DS-color-surface-secondary-default-rest), 0 0 0 4px var(--DS-color-surface-primary-default-rest), 0 0 0 8px var(--DS-color-surface-secondary-default-rest);
+    box-shadow: 0 0 0 2px #fffffe, 0 0 0 4px #0f6cbd, 0 0 0 8px #fffffe;
 }
 
 ::deep .st-node.st-node-incomplete {
-    color: var(--DS-neutral-90);
-    background-color: var(--DS-neutral-20);
+    color: #a8a9a8;
+    background-color: #f4f4f3;
 }
 
 ::deep .stepper-node-container{
@@ -55,17 +55,17 @@
 ::deep .st-connector {
     height: 2px;
     width: 100%;
-    background-color: var(--DS-color-content-neutral-subdued-rest);
+    background-color: #3f3f3e;
 }
 
 ::deep .st-connector-vertical {
     width: 2px;
     height: 100%;
-    background-color: var(--DS-color-content-neutral-subdued-rest);
+    background-color: #3f3f3e;
 }
 
 ::deep .st-connector-incomplete {
-    background-color: var(--DS-color-content-neutral-subdued-disabled) !important;
+    background-color: #c8c8c7 !important;
 }
 
 ::deep .st-connector-container {
