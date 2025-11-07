@@ -15,7 +15,7 @@ namespace blazor_stepper.Components.Stepper {
     public partial class DxStepper : ComponentBase, IDisposable {
 
         #region Fields
-        private ObservableCollection<StepInfo> steps = [];
+        private List<StepInfo> steps = [];
         private StepperDataMapping mappings = new();
         #endregion
 
@@ -49,12 +49,10 @@ namespace blazor_stepper.Components.Stepper {
 
         #region Lifecycle Methods
         protected override void OnInitialized() {
-            steps.CollectionChanged += UpdateStepRender;
             mappings.DataMappingsInitialized += InitializeStepCollection;
         }
 
         public void Dispose() {
-            steps.CollectionChanged -= UpdateStepRender;
             mappings.DataMappingsInitialized -= InitializeStepCollection;
         }
         #endregion
@@ -67,6 +65,16 @@ namespace blazor_stepper.Components.Stepper {
         #endregion
 
         #region Utility Methods
+        public void AddStep(StepInfo step) {
+            steps.Add(step);
+            StateHasChanged();
+        }
+
+        public void RemoveStep(StepInfo step) {
+            steps.Remove(step);
+            StateHasChanged();
+        }
+
         private string? GetStepText(int nodeIndex) {
             if (nodeIndex < 0 || nodeIndex >= steps.Count)
                 throw new ArgumentOutOfRangeException(nameof(nodeIndex), "Invalid node index");
@@ -76,9 +84,7 @@ namespace blazor_stepper.Components.Stepper {
             }
             return string.Empty;
         }
-        private void UpdateStepRender(object? sender, NotifyCollectionChangedEventArgs e) {
-            StateHasChanged();
-        }
+
         private void InitializeStepCollection(object? source, EventArgs e) {
             if(Data is null) {
                 throw new Exception("DxStepper is not bound");

@@ -36,7 +36,7 @@
     </DxGridLayout>
     @if(Steps is not null && Data is null) {
         <div>
-            <CascadingValue TValue="ObservableCollection<StepInfo>" Value="steps">
+            <CascadingValue IsFixed=true Value="this">
                 @Steps
             </CascadingValue>
             @if(steps.Count > 0) {

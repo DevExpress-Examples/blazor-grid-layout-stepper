@@ -4,7 +4,7 @@
     private StepInfo _stepInfo = new();
 
     [CascadingParameter]
-    private ObservableCollection<StepInfo>? Steps { get; set; }
+    private DxStepper? Stepper { get; set; }
 
     [Parameter]
     public string? Text { get; set; }
@@ -23,11 +23,11 @@
         _stepInfo.IconCssClass = IconCssClass;
         _stepInfo.Label = Label;
         _stepInfo.ChildContent = ChildContent;
-        Steps?.Add(_stepInfo);
+        Stepper?.AddStep(_stepInfo);
     }
 
     public void Dispose()
     {
-        Steps?.Remove(_stepInfo);
+        Stepper?.RemoveStep(_stepInfo);
     }
 }
