@@ -1,0 +1,14 @@
+﻿::deep .components-form {
+    width: calc(max(50%, 350px));
+    margin: auto;
+}
+
+::deep .h-100{
+    height: 100%;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
