@@ -1,5 +1,8 @@
 ﻿@using System.Collections.ObjectModel
+@implements IDisposable
 @code {
+    private StepInfo _stepInfo = new();
+
     [CascadingParameter]
     private ObservableCollection<StepInfo>? Steps { get; set; }
 
@@ -16,11 +19,15 @@
     public RenderFragment? ChildContent { get; set; }
 
     protected override void OnInitialized() {
-        Steps?.Add(new StepInfo {
-            Text = Text,
-            IconCssClass = IconCssClass,
-            Label = Label,
-            ChildContent = ChildContent
-        });
+        _stepInfo.Text = Text;
+        _stepInfo.IconCssClass = IconCssClass;
+        _stepInfo.Label = Label;
+        _stepInfo.ChildContent = ChildContent;
+        Steps?.Add(_stepInfo);
+    }
+
+    public void Dispose()
+    {
+        Steps?.Remove(_stepInfo);
     }
 }
