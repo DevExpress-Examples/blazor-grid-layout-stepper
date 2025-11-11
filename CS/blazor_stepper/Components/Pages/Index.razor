@@ -14,7 +14,7 @@
                 <DxFormLayoutItem ColSpanXs="12" Context="ctx">
                     <DxStepper @bind-SelectedIndex=SelectedIndex>
                         <Steps>
-                            <DxStep Text="Contact Details" Label="Contact Details" IconCssClass="oi oi-person">
+                            <DxStep Label="Contact Details" IconCssClass="oi oi-person">
                                 <DxFormLayout CaptionPosition="CaptionPosition.Vertical">
                                     <DxFormLayoutItem ColSpanXs="6" Caption="First Name">
                                         <DxTextBox @bind-Text=Booking.ContactDetails.FirstName></DxTextBox>
@@ -30,14 +30,14 @@
                                     </DxFormLayoutItem>
                                 </DxFormLayout>
                             </DxStep>
-                            <DxStep Text="Activity Details" Label="Activity Details" IconCssClass="oi oi-transfer">
+                            <DxStep Label="Activity Details" IconCssClass="oi oi-transfer">
                                 <DxFormLayout>
                                     <DxFormLayoutItem ColSpanXs="12" Caption="Activity Language" CaptionPosition="CaptionPosition.Vertical">
                                         <DxComboBox Data='["English", "French", "German", "Japanese"]' @bind-Value=Booking.ActivityDetails.Language></DxComboBox>
                                     </DxFormLayoutItem>
                                 </DxFormLayout>
                             </DxStep>
-                            <DxStep Text="Payment Details" Label="Payment Details" IconCssClass="oi oi-british-pound">
+                            <DxStep Label="Payment Details" IconCssClass="oi oi-british-pound">
                                 <DxFormLayout>
                                     <DxFormLayoutItem ColSpanXs="12" Caption="Payment Method" CaptionPosition="CaptionPosition.Vertical">
                                         <DxListBox Data='["Credit/Debit Card", "PayPal", "Google Pay"]' @bind-Value=Booking.PaymentDetails.PaymentMethod CssClass="h-100"></DxListBox>

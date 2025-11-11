@@ -40,6 +40,7 @@ namespace blazor_stepper.Components.Stepper {
         #region Event Handlers
         private async Task OnSelectedIndexChanged(int nodeIndex) {
             if(nodeIndex != SelectedIndex)
+                SelectedIndex = nodeIndex;
                 await SelectedIndexChanged.InvokeAsync(nodeIndex);
         }
         #endregion
