@@ -1,0 +1,53 @@
+﻿@page "/recipe"
+@rendermode InteractiveServer
+@using blazor_stepper.Components.Stepper
+@using blazor_stepper.Models
+
+<div class="recipe-container">
+    <DxStepper Orientation=Orientation.Vertical
+               @bind-SelectedIndex="@SelectedIndex">
+        <Steps>
+            @foreach(var item in Data)
+            {
+                <DxStep Text="@item.Text" Label="@item.Label" IconCssClass="@item.IconCssClass" />
+            }
+        </Steps>
+    </DxStepper>
+
+    <DxCarousel CssClass="recipes" @bind-ActiveItemIndex=SelectedIndex>
+        <Items>
+            <DxCarouselItem>
+                <img src="/images/1.png" />
+            </DxCarouselItem>
+            <DxCarouselItem>
+                <img src="/images/2.png" />
+            </DxCarouselItem>
+            <DxCarouselItem>
+                <img src="/images/3.png" />
+            </DxCarouselItem>
+            <DxCarouselItem>
+                <img src="/images/4.png" />
+            </DxCarouselItem>
+            <DxCarouselItem>
+                <img src="/images/5.png" />
+            </DxCarouselItem>
+        </Items>
+    </DxCarousel>
+</div>
+
+@code {
+    public int SelectedIndex { get; set; }
+    public List<StepperModel> Data { get; set; } = [];
+
+    protected override void OnInitialized() {
+        Data = new List<StepperModel>()
+        {
+            new StepperModel(){ Text = "1", Label = "Prepare ingredients", IconCssClass = "" },
+            new StepperModel(){ Text = "2", Label = "Boil the pasta", IconCssClass= "" },
+            new StepperModel(){ Text = "3", Label = "Make the sauce", IconCssClass = "" },
+            new StepperModel(){ Text = "4", Label = "Combine pasta and sauce", IconCssClass = "" },
+            new StepperModel(){ Text = "5", Label = "Serve the dish", IconCssClass = "" },
+        };
+    }
+}
+

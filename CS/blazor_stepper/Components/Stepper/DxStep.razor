@@ -1,0 +1,26 @@
+﻿@implements IDisposable
+@code {
+    [CascadingParameter]
+    private DxStepper? Stepper { get; set; }
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    public string? IconCssClass { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized() {
+        Stepper?.AddStep(this);
+    }
+
+    public void Dispose()
+    {
+        Stepper?.RemoveStep(this);
+    }
+}

@@ -1,0 +1,81 @@
+﻿.stepper-html-root{
+    display: flex;
+}
+
+.stepper-html-root.stepper-html-root-vertical {
+    flex-direction: row;
+}
+
+.stepper-html-root.stepper-html-root-horizontal {
+    flex-direction: column;
+}
+
+::deep .stepper-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::deep .stepper-cell > span{
+    text-align: center;
+}
+
+::deep .stepper-layout {
+    padding: 1rem;
+}
+
+::deep .st-node {
+    min-width: 2rem;
+    width: 2rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+}
+
+::deep .st-node:focus-visible {
+    outline: 0 !important;
+}
+
+::deep .st-node.st-node-selected {
+    box-shadow: 0 0 0 2px #fffffe, 0 0 0 4px #0f6cbd, 0 0 0 8px #fffffe;
+}
+
+::deep .st-node.st-node-incomplete {
+    color: #a8a9a8;
+    background-color: #f4f4f3;
+}
+
+::deep .stepper-node-container{
+    overflow: hidden;
+}
+
+::deep .st-connector {
+    height: 2px;
+    width: 100%;
+    background-color: #3f3f3e;
+}
+
+::deep .st-connector-vertical {
+    width: 2px;
+    height: 100%;
+    background-color: #3f3f3e;
+}
+
+::deep .st-connector-incomplete {
+    background-color: #c8c8c7 !important;
+}
+
+::deep .st-connector-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0px;
+}
+
+::deep .st-connector-container-vertical {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}

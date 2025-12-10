@@ -1,0 +1,38 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace blazor_stepper.Models {
+    public class BookingModel {
+        public ContactDetails ContactDetails { get; set; } = new();
+        public ActivityDetails ActivityDetails { get; set; } = new();
+        public PaymentDetails PaymentDetails { get; set; } = new();
+    }
+
+    public class ContactDetails {
+        [Required]
+        public string? FirstName { get; set; }
+        [Required]
+        public string? LastName { get; set; }
+        [Required]
+        [EmailAddress]
+        public string? Email { get; set; }
+        [Required]
+        [Phone]
+        public string? Phone { get; set; }
+    }
+
+    public class ActivityDetails {
+        [Required]
+        public string? Language { get; set; }
+    }
+
+    public class PaymentDetails {
+        [Required]
+        public string? PaymentMethod { get; set; }
+    }
+
+    public class StepperModel {
+        public required string Text { get; set; }
+        public required string IconCssClass { get; set; }
+        public required string Label { get; set; }
+    }
+}

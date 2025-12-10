@@ -1,0 +1,106 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject NavigationManager NM
+
+@using blazor_stepper.Components.Stepper
+@using blazor_stepper.Models
+@using System.ComponentModel.DataAnnotations
+
+<div>
+    <EditForm Model="CurrentModel" Context="editContext" @ref=editForm OnValidSubmit="OnValidSubmit">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <DxFormLayout CssClass="components-form">
+            <DxFormLayoutGroup Decoration="FormLayoutGroupDecoration.None">
+                <DxFormLayoutItem ColSpanXs="12" Context="ctx">
+                    <DxStepper @bind-SelectedIndex=SelectedIndex>
+                        <Steps>
+                            <DxStep Label="Contact Details" IconCssClass="oi oi-person">
+                                <DxFormLayout CaptionPosition="CaptionPosition.Vertical">
+                                    <DxFormLayoutItem ColSpanXs="6" Caption="First Name">
+                                        <DxTextBox @bind-Text=Booking.ContactDetails.FirstName></DxTextBox>
+                                    </DxFormLayoutItem>
+                                    <DxFormLayoutItem ColSpanXs="6" Caption="Last Name">
+                                        <DxTextBox @bind-Text=Booking.ContactDetails.LastName></DxTextBox>
+                                    </DxFormLayoutItem>
+                                    <DxFormLayoutItem ColSpanXs="12" Caption="Email">
+                                        <DxMaskedInput @bind-Value=Booking.ContactDetails.Email Mask="@(@"(\w|[.-])+@(\w|-)+\.(\w|-){2,4}")" MaskMode="MaskMode.RegEx"></DxMaskedInput>
+                                    </DxFormLayoutItem>
+                                    <DxFormLayoutItem ColSpanXs="12" Caption="Phone">
+                                        <DxMaskedInput @bind-Value=Booking.ContactDetails.Phone Mask="(999)000-0000"></DxMaskedInput>
+                                    </DxFormLayoutItem>
+                                </DxFormLayout>
+                            </DxStep>
+                            <DxStep Label="Activity Details" IconCssClass="oi oi-transfer">
+                                <DxFormLayout>
+                                    <DxFormLayoutItem ColSpanXs="12" Caption="Activity Language" CaptionPosition="CaptionPosition.Vertical">
+                                        <DxComboBox Data='["English", "French", "German", "Japanese"]' @bind-Value=Booking.ActivityDetails.Language></DxComboBox>
+                                    </DxFormLayoutItem>
+                                </DxFormLayout>
+                            </DxStep>
+                            <DxStep Label="Payment Details" IconCssClass="oi oi-british-pound">
+                                <DxFormLayout>
+                                    <DxFormLayoutItem ColSpanXs="12" Caption="Payment Method" CaptionPosition="CaptionPosition.Vertical">
+                                        <DxListBox Data='["Credit/Debit Card", "PayPal", "Google Pay"]' @bind-Value=Booking.PaymentDetails.PaymentMethod CssClass="h-100"></DxListBox>
+                                    </DxFormLayoutItem>
+                                </DxFormLayout>
+                            </DxStep>
+                        </Steps>
+                    </DxStepper>
+                </DxFormLayoutItem>
+            </DxFormLayoutGroup>
+            <DxFormLayoutGroup Decoration="FormLayoutGroupDecoration.None">
+                <Items>
+                    <DxFormLayoutItem ColSpanXs="12">
+                        <div class="button-container">
+                            <DxButton Text="Prev" Click="() => SelectedIndex--" Enabled=@(SelectedIndex > 0)></DxButton>
+                            @if(SelectedIndex < 2) {
+                                <DxButton Text="Next" Click="() => SelectedIndex++"></DxButton>
+                            }
+                            else {
+                                <DxButton Text="Submit" RenderStyleMode=ButtonRenderStyleMode.Outline SubmitFormOnClick=true></DxButton>
+                            }
+                        </div>
+                    </DxFormLayoutItem>
+                </Items>
+            </DxFormLayoutGroup>
+        </DxFormLayout>
+    </EditForm>
+</div>
+
+@code {
+    private EditForm? editForm;
+    private int selectedIndex;
+
+    public int SelectedIndex {
+        get {
+            return selectedIndex;
+        }
+        set {
+            if(!PagesValidBefore(value))
+                return;
+            selectedIndex = value;
+        }
+    }
+    public BookingModel Booking { get; set; } = new();
+
+    public object? CurrentModel {
+        get => SelectedIndex switch {
+            0 => Booking.ContactDetails,
+            1 => Booking.ActivityDetails,
+            2 => Booking.PaymentDetails,
+            _ => null
+        };
+    }
+
+    private bool PagesValidBefore(int index) {
+        if(index < SelectedIndex)
+            return true;
+        var validationResult = editForm.EditContext.Validate();
+        return index - SelectedIndex <= 1 && validationResult;
+    }
+
+    private void OnValidSubmit(EditContext ctx) {
+        if(ctx.Model == Booking.PaymentDetails)
+            NM.NavigateTo("recipe");
+    }
+}

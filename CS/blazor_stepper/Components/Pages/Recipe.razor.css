@@ -1,0 +1,19 @@
+﻿::deep .recipes {
+    height: 500px;
+    width: 500px;
+}
+
+::deep .recipes img {
+    height: 100%;
+}
+
+.recipe-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.recipe-container > ::deep .stepper-html-root {
+    height: 500px;
+}
