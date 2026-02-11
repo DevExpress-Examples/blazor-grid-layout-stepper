@@ -43,7 +43,7 @@ The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor
 
 ### DxStep Component
 
-The `DxStep` [component](CS/blazor_stepper/Components/Stepper/DxStep.razor) represents an individual step in the stepper. `DxStep` components are placed inside the `Steps` property of the `DxStepper` component.
+The `DxStep` [component](CS/blazor_stepper/Components/Stepper/DxStep.razor) implements an individual step in the stepper. `DxStep` components should be declared within the `Steps` collection.
 
 Each step can contain:
 
