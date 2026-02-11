@@ -13,7 +13,7 @@ This example demonstrates how to build a custom Stepper component for Blazor app
 
 ## Implementation Details
 
-The implementation consists of two components.
+The implementation consists of two components: `DxStepper` and `DxStep`.
 
 ```razor
 <DxStepper Orientation=Orientation.Vertical
