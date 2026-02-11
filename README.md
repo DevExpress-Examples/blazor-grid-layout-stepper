@@ -32,7 +32,7 @@ The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor
 
 - **Nodes (steps)** are placed in even columns/rows.
 - **Connectors** (lines between steps) are placed in odd columns/rows.
-- **Labels** are positioned below (horizontal orientation) or next to (vertical orientation) the nodes.
+- **Labels** are positioned below (horizontal orientation) or next to (vertical orientation) nodes.
 
 `DxStepper` supports the following properties:
 
