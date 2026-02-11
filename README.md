@@ -34,7 +34,7 @@ The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor
 - **Connectors** (lines between steps) are placed in odd columns/rows.
 - **Labels** are positioned below (horizontal orientation) or next to (vertical orientation) nodes.
 
-`DxStepper` supports the following properties:
+`DxStepper` implements the following properties:
 
 - `Steps` - Specifies the collection of steps.
 - `SelectedIndex` - Returns the zero-based index of the selected step.
