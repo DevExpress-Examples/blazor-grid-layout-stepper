@@ -28,7 +28,7 @@ The implementation consists of two components: `DxStepper` and `DxStep`.
 
 ### DxStepper
 
-The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor) is built on top of `DxGridLayout` and manages the order and layout of steps:
+The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor) uses `DxGridLayout` to manage the order and layout of steps:
 
 - **Nodes (steps)** are placed in even columns/rows.
 - **Connectors** (lines between steps) are placed in odd columns/rows.
