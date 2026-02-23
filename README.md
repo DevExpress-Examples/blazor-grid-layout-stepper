@@ -1,5 +1,4 @@
 <!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/1082578250/25.1.4%2B)
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1311551)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
@@ -8,7 +7,7 @@
 
 A **Stepper** is a UI component that guides users through a sequential process by breaking complex tasks into smaller, manageable steps. It is commonly used for e-commerce checkouts, account registrations, and user onboarding.
 
-This example demonstrates how to build a custom Stepper component for Blazor applications using [DevExpress DxGridLayout](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridLayout). The component supports both horizontal and vertical orientation, and can fit your specific design requirements.
+This example demonstrates how to build a custom Stepper component for Blazor using [DevExpress DxGridLayout](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridLayout). The component supports both horizontal and vertical orientation, and can integrate internal design requirements.
 
 ![Custom Stepper Component](stepper-component.gif)
 
@@ -29,9 +28,9 @@ The implementation consists of two components: `DxStepper` and `DxStep`.
 
 ### DxStepper
 
-The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor) uses `DxGridLayout` to manage the order and layout of steps:
+The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor) uses `DxGridLayout` to manage step order and layout:
 
-- **Nodes (steps)** are placed in even columns/rows.
+- **Nodes** (steps) are placed in even columns/rows.
 - **Connectors** (lines between steps) are placed in odd columns/rows.
 - **Labels** are positioned below (horizontal orientation) or next to (vertical orientation) nodes.
 
@@ -72,9 +71,9 @@ Each step can contain:
 
 - [Form Layout for Blazor - Tabbed Wizard](https://github.com/DevExpress-Examples/blazor-formlayout-implement-tabbed-wizard)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
-[<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=draft-example-blazor-stepper&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=draft-example-blazor-stepper&~~~was_helpful=no)
+[<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-grid-layout-stepper&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-grid-layout-stepper&~~~was_helpful=no)
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
