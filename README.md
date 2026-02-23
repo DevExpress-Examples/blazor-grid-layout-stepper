@@ -8,7 +8,7 @@
 
 A **Stepper** is a UI component that guides users through a sequential process by breaking complex tasks into smaller, manageable steps. It is commonly used for e-commerce checkouts, account registrations, and user onboarding.
 
-This example demonstrates how to build a custom Stepper component for Blazor applications using [DevExpress DxGridLayout](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridLayout). The component supports both horizontal and vertical orientation, and can fit your specific design requirements.
+This example demonstrates how to build a custom Stepper component for Blazor using [DevExpress DxGridLayout](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridLayout). The component supports both horizontal and vertical orientation, and can integrate internal design requirements.
 
 ![Custom Stepper Component](stepper-component.gif)
 
@@ -29,9 +29,9 @@ The implementation consists of two components: `DxStepper` and `DxStep`.
 
 ### DxStepper
 
-The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor) uses `DxGridLayout` to manage the order and layout of steps:
+The `DxStepper` [component](CS/blazor_stepper/Components/Stepper/DxStepper.razor) uses `DxGridLayout` to manage step order and layout:
 
-- **Nodes (steps)** are placed in even columns/rows.
+- **Nodes** (steps) are placed in even columns/rows.
 - **Connectors** (lines between steps) are placed in odd columns/rows.
 - **Labels** are positioned below (horizontal orientation) or next to (vertical orientation) nodes.
 
